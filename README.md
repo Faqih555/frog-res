@@ -1,0 +1,2 @@
+# frog-res
+project magang
