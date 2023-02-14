@@ -11,6 +11,7 @@ body{
 }
 
 nav{
+    position: relative;
     background-color: #1e1e1e;
     width: 100%;
     display: flex;
@@ -31,9 +32,17 @@ nav{
     cursor: pointer;
 }
 
+
 .buku{
-    margin-right: 30px;
-    margin-left: 30px;
+    position: absolute;
+    bottom: 20px;
+    right: auto;
+    left: 290px;
+}
+
+.beranda{
+    position: absolute;
+    bottom: 20px;
 }
 
 nav ul li{
@@ -46,6 +55,29 @@ nav ul li a{
     color: #d9d9d9;
     font-size: 1rem;
     margin-left: .9rem;
+}
+
+a:hover{
+    font-size: 1.2rem;
+    transition: .5s;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    animation: jedagJedug .5s infinite;
+    -webkit-animation: jedagJedug 1s infinite;
+}
+
+@keyframes jedagJedug{
+    0%{
+        font-size: 1rem;
+    }
+    50%{
+        font-size: 1.2rem;
+    }
+    100%{
+        font-size: 1rem;
+    }
 }
 
 a:hover{
@@ -107,7 +139,35 @@ main{
     text-align: center;
 }
 
+.profile-grup:hover{
+    transition: 2s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+}
+
+.profile-grup:active{
+    transition: 2s;
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -ms-transition: 2s;
+    -o-transition: 2s;
+}
+
 .profile{
+    position: none;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,12 +176,13 @@ main{
     overflow: hidden;
     background-color: #4e4e4e;
     border: none;
-    border-radius: 75px;
+    border-radius: 50px;
     margin-right: 10px;
-    -webkit-border-radius: 75px;
-    -moz-border-radius: 75px;
-    -ms-border-radius: 75px;
-    -o-border-radius: 75px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    cursor: pointer;
 }
 
 .foto-profile{
