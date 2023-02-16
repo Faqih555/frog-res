@@ -10,6 +10,7 @@ body{
     font-family: 'Inter', sans-serif;
 }
 
+/* navbar start */
 nav{
     position: relative;
     background-color: #1e1e1e;
@@ -20,6 +21,7 @@ nav{
     top: 0;
     left: 0;
     right: 0;
+    z-index: 999;
 }
 
 .logo-frog-res{
@@ -50,14 +52,14 @@ nav ul li{
     display: inline-block;
 }
 
-nav ul li a{
+.link{
     text-decoration: none;
     color: #d9d9d9;
     font-size: 1rem;
     margin-left: .9rem;
 }
 
-a:hover{
+.link:hover{
     font-size: 1.2rem;
     transition: .5s;
     -webkit-transition: .5s;
@@ -80,7 +82,7 @@ a:hover{
     }
 }
 
-a:hover{
+.link:hover{
     background: -webkit-linear-gradient(to right, #87c32f, #1aa24a);
     background: linear-gradient(to right, #87c32f, #1aa24a);
     -webkit-background-clip: text;
@@ -176,13 +178,16 @@ a:hover{
     margin-top: 14px;
     margin-right: 7px;
 }
+/* navbar done */
 
+/* content start */
 main{
     width: 70%;
-    height: 100vh;
+    height: 200vh;
     background-color: #403f3f;
     margin-top: 75px;
     margin-left: 13px;
+    float: left;
     border: 1px solid black;
     border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -196,6 +201,11 @@ main{
     justify-content: center;
     margin-top: -25px;
     margin-left: -17.5px;
+    /* margin-bottom: -30px; */
+}
+
+.gap{
+    margin-top: 40px;
 }
 
 .dart{
@@ -206,9 +216,8 @@ main{
 }
 
 .swift{
-    width: 216px;
+    width: 225px;
     height: auto;
-    margin-left: -30px;
     margin-top: 5px;
     filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
     -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
@@ -217,9 +226,7 @@ main{
 .javascript{
     width: 127px;
     height: auto;
-    margin-top: 8px;
-    margin-right: 10px;
-    margin-left: -60px;
+    margin-top: 12px;
     filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
     -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
 }
@@ -227,17 +234,48 @@ main{
 .ruby{
     width: 155px;
     height: auto;
-    margin-left: -30px;
+    margin-top: 2px;
     filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
     -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
 }
 
-.h2-
+h2{
+    color: #d9d9d9;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+a{
+    text-decoration: none;
+}
+
+.h2-dart{
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.h2-swift{
+    margin-top: -12px;
+}
+
+.h2-javascript{
+    margin-top: 7px;
+}
+
+.h2-ruby{
+    margin-left: 6px;
+    margin-top: 3px;
+}
 
 
 .bahasa{
     text-align: center;
     margin: 40px;
+    /* background-color: #1aa24a; */
+}
+
+.m-swift{
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 
@@ -249,5 +287,19 @@ main{
     width: 90%;
     border-color: #282626;
     margin: auto;
-    margin-top: -30px;
+    border: 3px solid #282626;
+    margin-top: -33px;
 }
+/* content done */
+
+/* aside start */
+aside{
+    width: 28%;
+    height: 200vh;
+    background-color: #1aa24a;
+    margin-right: 5px;
+    margin-top: 75px;
+    float: right;
+
+}
+/* aside done */
