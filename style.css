@@ -118,20 +118,6 @@ a:hover{
     align-items: center;
 }
 
-main{
-    width: 70%;
-    height: 100vh;
-    background-color: #403f3f;
-    margin-top: 75px;
-    margin-left: 13px;
-    border: 1px solid black;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-}
-
 .profile-grup{
     display: flex;
     justify-content: center;
@@ -189,4 +175,79 @@ main{
     width: 80px;
     margin-top: 14px;
     margin-right: 7px;
+}
+
+main{
+    width: 70%;
+    height: 100vh;
+    background-color: #403f3f;
+    margin-top: 75px;
+    margin-left: 13px;
+    border: 1px solid black;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.grup-content{
+    display: flex;
+    justify-content: center;
+    margin-top: -25px;
+    margin-left: -17.5px;
+}
+
+.dart{
+    width: 140px;
+    height: auto;
+    filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+}
+
+.swift{
+    width: 216px;
+    height: auto;
+    margin-left: -30px;
+    margin-top: 5px;
+    filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+}
+
+.javascript{
+    width: 127px;
+    height: auto;
+    margin-top: 8px;
+    margin-right: 10px;
+    margin-left: -60px;
+    filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+}
+
+.ruby{
+    width: 155px;
+    height: auto;
+    margin-left: -30px;
+    filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(2px 2px 11px rgba(0, 0, 0, 0.4));
+}
+
+.h2-
+
+
+.bahasa{
+    text-align: center;
+    margin: 40px;
+}
+
+
+.bahasa img{
+    margin-bottom: 10px;
+}
+
+.hr{
+    width: 90%;
+    border-color: #282626;
+    margin: auto;
+    margin-top: -30px;
 }
