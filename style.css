@@ -124,7 +124,7 @@ nav ul li{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .profile-grup:hover{
@@ -156,28 +156,12 @@ nav ul li{
 .profile{
     position: none;
     z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 52px;
     height: 52px;
-    overflow: hidden;
-    background-color: #4e4e4e;
-    border: none;
-    border-radius: 50px;
     margin-right: 10px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
     cursor: pointer;
 }
 
-.foto-profile{
-    width: 80px;
-    margin-top: 14px;
-    margin-right: 7px;
-}
 /* navbar done */
 
 /* content start */
@@ -242,7 +226,7 @@ a{
 
 /* aside start */
 aside{
-    width: 28%;
+    min-width: 28%;
     height: 200vh;
     background-color: #1aa24a;
     margin-right: 5px;
