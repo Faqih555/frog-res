@@ -6,7 +6,7 @@ html, body, *{
 
 body{
     background-color: #343131;
-    min-height: 100vh;
+    height: 200vh;
     font-family: 'Inter', sans-serif;
 }
 
@@ -226,12 +226,15 @@ a{
 
 /* aside start */
 aside{
-    min-width: 28%;
+    width: 28%;
     height: 200vh;
-    /* background-color: #1aa24a; */
+    background-color: #1aa24a;
     margin-right: 5px;
     margin-top: 75px;
     float: right;
+}
 
+.aside-content{
+    height: 200vh;
 }
 /* aside done */
