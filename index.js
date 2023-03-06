@@ -1,3 +1,9 @@
+let profile = document.querySelector('#profile')
+
 const tes = () =>{
-    alert("apah iyah")
+    profile.classList.remove("hidden");
+}
+
+const close = () =>{
+    profile.classList.add("hidden");
 }

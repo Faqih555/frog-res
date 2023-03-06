@@ -13,6 +13,20 @@
     <title>FROG-RES</title>
     <link rel="icon" type="image/png" href="assets/logo/logo-title.png" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+            zIndex: {
+              99999: "99999",
+            },
+          },
+        },
+      };
+    </script>
   </head>
   <body>
     <div class="containter">
@@ -39,9 +53,13 @@
             </div>
           </div>
           <div class="profile-grup">
-            <button class="profile rounded-full" onclick="tes()">
-              <img src="/assets/icon/foto-profile.png" alt="" class="foto-profile" />
-            </button>
+            <a href="login.html" class="profile rounded-full">
+              <img
+                src="/assets/icon/foto-profile.png"
+                alt=""
+                class="foto-profile"
+              />
+            </a>
           </div>
         </nav>
       </header>
@@ -123,7 +141,7 @@
             </a>
             <a href="#">
               <div class="bahasa">
-                <img src="assets/logo/csharp.png" alt=""/>
+                <img src="assets/logo/csharp.png" alt="" />
                 <h2>C#</h2>
               </div>
             </a>
@@ -173,6 +191,13 @@
         <div class="aside-content">
           <div class="ig">
             <img src="" alt="" />
+          </div>
+          <div class="">
+            <p class="text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+              cum enim id est placeat nobis. Veniam obcaecati explicabo
+              voluptatem repudiandae?
+            </p>
           </div>
         </div>
       </aside>

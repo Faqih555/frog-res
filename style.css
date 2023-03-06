@@ -226,7 +226,7 @@ a{
 
 /* aside start */
 aside{
-    min-width: 28%;
+    width: 28%;
     height: 200vh;
     background-color: #1aa24a;
     margin-right: 5px;
