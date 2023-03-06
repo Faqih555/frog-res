@@ -244,7 +244,7 @@ a{
 aside{
     width: 28%;
     height: 200vh;
-    background-color: #1aa24a;
+    /* background-color: #1aa24a; */
     margin-right: 5px;
     margin-top: 75px;
     float: right;
