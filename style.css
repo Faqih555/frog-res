@@ -58,28 +58,7 @@ nav ul li{
     margin-left: .9rem;
 }
 
-.link:hover{
-    font-size: 1.2rem;
-    transition: .5s;
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
-    animation: jedagJedug .5s infinite;
-    -webkit-animation: jedagJedug 1s infinite;
-}
 
-@keyframes jedagJedug{
-    0%{
-        font-size: 1rem;
-    }
-    50%{
-        font-size: 1.2rem;
-    }
-    100%{
-        font-size: 1rem;
-    }
-}
 
 .link:hover{
     background: -webkit-linear-gradient(to right, #87c32f, #1aa24a);
