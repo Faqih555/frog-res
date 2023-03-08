@@ -5,7 +5,7 @@ html, body, *{
 }
 
 body{
-    background-color: #343131;
+    background-color: #343131; 
     font-family: 'Inter', sans-serif;
 }
 
@@ -237,3 +237,8 @@ aside{
     height: 200vh;
 }
 /* aside done */
+
+/* style login */
+.ukuran{
+    padding-left: 40px;
+}
