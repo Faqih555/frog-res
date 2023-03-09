@@ -13,6 +13,8 @@
     <title>FROG-RES</title>
     <link rel="icon" type="image/png" href="assets/logo/logo-title.png" />
     <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+
     <script>
       tailwind.config = {
         theme: {
@@ -29,37 +31,44 @@
     </script>
   </head>
 
-  <body>
-    <!-- navbar start -->
-    <header>
-      <nav class="navigation">
-        <div>
-          <img
-            src="/assets/logo/LOGO-forg-res.png"
-            alt=""
-            class="logo-frog-res"
-          />
+<body class="bg-[#584e4e]">
+    <div class="">
+        <!-- navbar start -->
+        <header>
+            <nav class="navigation">
+                <div>
+                    <img src="/assets/logo/LOGO-forg-res.png" alt="" class="logo-frog-res" />
+                </div>
+                <ul>
+                    <li class="beranda"><a href="index.html" class="link">BERANDA</a></li>
+                    <li class="buku"><a href="#" class="link">BUKU</a></li>
+                </ul>
+                <div class="input-grup">
+                    <input type="text" name="name" class="input" autocomplete="off" />
+                    <div class="icon">
+                        <i class="icon-search" aria-hidden="true"><img src="/assets/icon/search.png" alt="" /></i>
+                    </div>
+                </div>
+                <div class="profile-grup">
+                    <a href="login.html" class="profile rounded-full">
+                        <img src="/assets/icon/foto-profile.png" alt="" class="profile" />
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <!-- navbar done -->
         </div>
-        <ul>
-          <li class="beranda"><a href="index.html" class="link">BERANDA</a></li>
-          <li class="buku"><a href="#" class="link">BUKU</a></li>
-        </ul>
-        <div class="input-grup">
-          <input type="text" name="name" class="input" autocomplete="off" />
-          <div class="icon">
-            <i class="icon-search" aria-hidden="true"
-              ><img src="/assets/icon/search.png" alt=""
-            /></i>
-          </div>
-        </div>
-        <div class="profile-grup">
-          <a href="login.html" class="profile rounded-full">
-            <img src="/assets/icon/foto-profile.png" alt="" class="profile" />
-          </a>
-        </div>
-      </nav>
-    </header>
-    <!-- navbar done -->
+
+    <div class="mt-24 h-96 bg-[#E7DFDF] ml-24 mr-24 text-2xl rounded-lg relative border-1 border-black">
+      <h1 class="text-center absolute ml-[475px] top-2">A Book For You</h1>
+      <div class="h-52 w-full bg-[#4d4444] absolute top-14 border-1 border-black">
+        <img src="assets/icon/got.jpg" alt="gambar" class="h-48 w-32 ml-8 mt-1.5 border-[#1E1E1E] border-2">
+        <img src="assets/icon/drag.jpg" alt="gambar" class="h-48 w-32 ml-48 absolute top-1.5 border-[#1E1E1E] border-2">
+        <img src="assets/icon/fca.jpg" alt="gambar" class="h-48 ml-[348px] absolute top-1.5 border-[#1E1E1E] border-2">
+        <img src="" alt="gambar" class="h-48 ml-8 mt-1.5 border-[#1E1E1E] border-2">
+        <img src="" alt="gambar" class="h-48 ml-8 mt-1.5 border-[#1E1E1E] border-2">
+      </div>
+    </div>
 
     <script src="https://cdn.tailwindcss.com"></script>
   </body>
