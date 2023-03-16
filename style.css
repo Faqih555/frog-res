@@ -219,3 +219,7 @@ aside{
 
 
 /* style login */
+
+.sidebar {
+    height: 90% !important;
+}
