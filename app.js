@@ -39,6 +39,13 @@ app.get('/', (req, res) => {
   app.get('/dart', (req, res) => {
     res.render('dart', {
       layout: 'layouts/main-layouts',
+      side: 'layouts/side-bar',
+      subMenuDasar1: '#1 Flex',
+      subMenuDasar2: '#2 Margin',
+      subMenuDasar3: '#3 lol',
+      subMenuMahir1: '#1 lol',
+      subMenuMahir2: '#2 Grid',
+      subMenuMahir3: '#3 Padding',
     })
   })
   
