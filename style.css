@@ -46,6 +46,11 @@ nav{
     bottom: 20px;
 }
 
+.kontak{
+    position: absolute;
+    bottom: 20px;
+}
+
 nav ul li{
     list-style: none;
     display: inline-block;
