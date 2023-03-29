@@ -52,4 +52,15 @@
         </form>
         <a href="login" class="absolute top-[175px] -mt-2 ml-[355px] text-xs text-[#d9d9d9] ">Login</a>
       </div>
+
+      <% if (typeof errors != 'undefined') { %>
+        <div class="text-[#d9d9d9]" role="alert">
+          <ul>
+            <% errors.forEach(error => { %>
+             <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+      
       <!-- from login done -->

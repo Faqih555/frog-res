@@ -1,5 +1,6 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
+const { body, validationResult, check } = require('express-validator');
 const collection = require("./mongodb")
 const app = express()
 const port = 3000
@@ -37,19 +38,43 @@ app.get('/', (req, res) => {
     })
   })
 
-  app.post('/register', async (req, res) =>{
+  app.post('/register', [
+    body('name').custom(async (value) =>{
+      const duplikat = await collection.findOne({name: value})
+      if(duplikat){
+        throw new Error('nama sudah terdaftar')
+      }
+      return true
+    }),
+    body('email').custom(async (value) =>{
+      const duplikat = await collection.findOne({email: value})
+      if(duplikat){
+        throw new Error('email sudah terdaftar')
+      }
+      return true
+    }),
+    check('email', 'email tidak valid').isEmail(),
+  ], async (req, res) =>{
     const data = {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password
     }
+    const  errors = validationResult(req)
+    if(!errors.isEmpty()){
+      // return res.status(400).json({ errors: errors.array() });
+      res.render('register', {
+        layout: 'layouts/main-layouts',
+        errors: errors.array()
+      })
+    }else{
 
     await collection.insertMany([data])
 
     res.render('login',{
       layout: 'layouts/main-layouts',
     })
-
+  }
   })
   
   app.post('/login', async (req, res) =>{
