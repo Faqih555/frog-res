@@ -1,5 +1,5 @@
 <!-- from login start -->
-<div class=" absolute left-96 mt-40 w-[550px] h-[400px] rounded-sm bg-[#1e1e1e]">
+<div class=" absolute left-96 mt-40 w-[550px] h-[400px] rounded-sm bg-[#1e1e1e] overflow-hidden">
 
     <div>
       <img src="/logo/LOGO-forg-res.png" alt="gambar" class="mt-40 ml-8">
@@ -53,14 +53,15 @@
         <a href="login" class="absolute top-[175px] -mt-2 ml-[355px] text-xs text-[#d9d9d9] ">Login</a>
       </div>
 
+      <div class="w-[55%] ml-auto mt-52">
       <% if (typeof errors != 'undefined') { %>
-        <div class="text-[#d9d9d9]" role="alert">
+        <div class="text-red-500 " role="alert">
           <ul>
             <% errors.forEach(error => { %>
-             <li><%= error.msg %></li>
+             <li class="mb-1"><%= error.msg %></li>
             <% }) %>
           </ul>
         </div>
       <% } %>
-      
+      </div>
       <!-- from login done -->

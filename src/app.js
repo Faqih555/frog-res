@@ -40,6 +40,24 @@ app.get('/', (req, res) => {
 
   app.post('/register', [
     body('name').custom(async (value) =>{
+      if(value == ''){
+        throw new Error('nama tidak boleh kosong')
+      }
+      return true
+    }),
+    body('email').custom(async (value) =>{
+      if(value == ''){
+        throw new Error('email tidak boleh kosong')
+      }
+      return true
+    }),
+    body('password').custom(async (value) =>{
+      if(value == ''){
+        throw new Error('password tidak boleh kosong')
+      }
+      return true
+    }),
+    body('name').custom(async (value) =>{
       const duplikat = await collection.findOne({name: value})
       if(duplikat){
         throw new Error('nama sudah terdaftar')
@@ -54,6 +72,7 @@ app.get('/', (req, res) => {
       return true
     }),
     check('email', 'email tidak valid').isEmail(),
+    check('password', 'password minimal 8 character').isLength({min: 8}),
   ], async (req, res) =>{
     const data = {
       name: req.body.name,
@@ -77,22 +96,46 @@ app.get('/', (req, res) => {
   }
   })
   
-  app.post('/login', async (req, res) =>{
-    
-    try{
-      const check = await collection.findOne({name: req.body.name})
-
-      if(check.password === req.body.password){
+  app.post('/login',[
+    body('name').custom(async (value) =>{
+      if(value == ''){
+        throw new Error('nama tidak boleh kosong')
+      }
+      return true
+    }),
+    body('password').custom(async (value) =>{
+      if(value == ''){
+        throw new Error('password tidak boleh kosong')
+      }
+      return true
+    }),
+    body('name').custom(async (value) =>{
+      const user = await collection.findOne({name: value})
+      if(!user){
+        throw new Error('nama belum terdaftar')
+      }
+      return true
+    }),
+    body('password').custom(async (value) =>{
+      const user = await collection.findOne({password: value})
+      if(!user){
+        throw new Error('password anda salah')
+      }
+      return true
+    }),
+  ], async (req, res) =>{
+    const  errors = validationResult(req)
+    if(!errors.isEmpty()){
+      // return res.status(400).json({ errors: errors.array() });
+      res.render('login', {
+        layout: 'layouts/main-layouts',
+        errors: errors.array()
+      })
+    }else{
         res.render('index',{
           layout: 'layouts/main-layouts',
         })
-      }else{
-        res.send('password anda salah')
-      }
-
-    }catch{
-      res.send("wrong details")
-    }
+  }
   })
   
   app.get('/dart', (req, res) => {
