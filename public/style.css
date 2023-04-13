@@ -7,6 +7,7 @@ html, body, *{
 body{
     background-color: #343131; 
     font-family: 'Inter', sans-serif;
+    height: 100%;
 }
 
 /* navbar start */
@@ -150,7 +151,7 @@ nav ul li{
 /* content start */
 main{
     width: 70%;
-    height: 200vh;
+    /* height: 200vh; */
     background-color: #403f3f;
     margin-top: 75px;
     margin-left: 13px;
@@ -210,7 +211,7 @@ a{
 /* aside start */
 aside{
     width: 28%;
-    height: 200vh;
+    /* height: 200vh; */
     /* background-color: #1aa24a; */
     margin-right: 5px;
     margin-top: 75px;
@@ -218,7 +219,7 @@ aside{
 }
 
 .aside-content{
-    height: 200vh;
+    /* height: 200vh; */
 }
 /* aside done */
 
