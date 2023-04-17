@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://127.0.0.1:27017/LogInSignUpFrogRes")
+mongoose.connect("mongodb://127.0.0.1:27017/FrogRes")
 .then(() =>{
     console.log("mongodb conected")
 })
@@ -23,6 +23,29 @@ const LogIn = new mongoose.Schema({
     }
 })
 
-const collection = new mongoose.model("LogIn", LogIn)
+const artikel = new mongoose.Schema({
+    judul:{
+        type: String,
+        required: true,
+    },
+    konten:{
+        type: String,
+        required: true,
+    },
+    tanggal: {
+        type: Date,
+        default: Date.now
+    },
+    source:{
+        type: String,
+        required: true,
+    }
+})
 
-module.exports = collection
+const upload = new mongoose.model("artikel", artikel)
+
+const collection = new mongoose.model("user", LogIn)
+
+
+
+module.exports = {collection, upload}

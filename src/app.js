@@ -2,9 +2,10 @@ require('dotenv').config()
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const { body, validationResult, check } = require("express-validator");
-const collection = require("./mongodb");
+const {collection, upload} = require("./mongodb");
 const bcryptjs = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
+const session = require("express-session");
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,13 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(
+  session({
+    secret: "secret-key", // Kunci rahasia untuk menyimpan session
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.get("/", (req, res) => {
   res.render("index", {
@@ -75,8 +83,8 @@ app.post(
       }
       return true;
     }),
-    check("email", "email tidak valid").isEmail(),
-    check("password", "password minimal 8 character").isLength({ min: 8 }),
+    check("email", "invalid email address").isEmail(),
+    check("password", "minimum password legth is 8 characters").isLength({ min: 8 }),
   ],
   async (req, res) => {
     const { name, email, password } = req.body;
@@ -328,6 +336,73 @@ app.get("/ts", (req, res) => {
     subMenuMahir3: "Padding",
   });
 });
+
+app.get("/upload", (req, res) => {
+  res.render("upload", {
+    layout: "layouts/main-layouts",
+    side: "layouts/side-bar",
+    img: "/logo/ruby.png",
+    subMenuDasar1: "Flex",
+    subMenuDasar2: "Margin",
+    subMenuDasar3: "lol",
+    subMenuMahir1: "lol",
+    subMenuMahir2: "Grid",
+    subMenuMahir3: "Padding",
+  });
+});
+
+app.post("/upload", async (req, res) => {
+  const {judul, konten} = req.body
+
+  let source
+
+  if (req.originalUrl === "/dart") {
+    source = "dart"; // Nilai "source" untuk halaman A
+  } else if (req.originalUrl === "/java") {
+    source = "java"; // Nilai "source" untuk halaman B
+  } else {
+    source = ""; // Nilai default "source" jika halaman tidak dikenali
+  }
+
+  const data = {
+    judul,
+    konten,
+    source
+  };
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    // return res.status(400).json({ errors: errors.array() });
+    res.render("upload", {
+      layout: "layouts/main-layouts",
+    side: "layouts/side-bar",
+    img: "/logo/ruby.png",
+    subMenuDasar1: "Flex",
+    subMenuDasar2: "Margin",
+    subMenuDasar3: "lol",
+    subMenuMahir1: "lol",
+    subMenuMahir2: "Grid",
+    subMenuMahir3: "Padding",
+    errors: errors.array()
+    });
+  } else {
+    await upload.insertMany([data]);
+
+    if(req.originalUrl === "/dart"){
+      res.render("dart", {
+        layout: "layouts/main-layouts",
+        side: "layouts/side-bar",
+        img: "/logo/dart.png",
+        subMenuDasar1: "Flex",
+        subMenuDasar2: "Margin",
+        subMenuDasar3: "lol",
+        subMenuMahir1: "lol",
+        subMenuMahir2: "Grid",
+        subMenuMahir3: "Padding",
+      });
+    }
+  }
+  
+})
 
 app.use("/", (req, res) => {
   res.status(404);
