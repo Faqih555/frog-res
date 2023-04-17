@@ -170,6 +170,8 @@ app.post(
 );
 
 app.get("/dart", (req, res) => {
+  req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
+
   res.render("dart", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -184,6 +186,8 @@ app.get("/dart", (req, res) => {
 });
 
 app.get("/cplusplus", (req, res) => {
+  req.session.source = 'cplusplus'
+
   res.render("cplusplus", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -198,6 +202,8 @@ app.get("/cplusplus", (req, res) => {
 });
 
 app.get("/csharp", (req, res) => {
+  req.session.source = 'csharp'
+
   res.render("csharp", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -212,6 +218,8 @@ app.get("/csharp", (req, res) => {
 });
 
 app.get("/java", (req, res) => {
+  req.session.source = 'java'
+
   res.render("java", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -226,6 +234,8 @@ app.get("/java", (req, res) => {
 });
 
 app.get("/js", (req, res) => {
+  req.session.source = 'js'
+
   res.render("js", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -240,6 +250,8 @@ app.get("/js", (req, res) => {
 });
 
 app.get("/perl", (req, res) => {
+  req.session.source = 'perl'
+
   res.render("perl", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -254,6 +266,8 @@ app.get("/perl", (req, res) => {
 });
 
 app.get("/php", (req, res) => {
+  req.session.source = 'php'
+
   res.render("php", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -268,6 +282,8 @@ app.get("/php", (req, res) => {
 });
 
 app.get("/python", (req, res) => {
+  req.session.source = 'python'
+
   res.render("python", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -282,6 +298,8 @@ app.get("/python", (req, res) => {
 });
 
 app.get("/r", (req, res) => {
+  req.session.source = 'r'
+
   res.render("r", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -296,6 +314,8 @@ app.get("/r", (req, res) => {
 });
 
 app.get("/ruby", (req, res) => {
+  req.session.source = 'ruby'
+
   res.render("ruby", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -310,6 +330,8 @@ app.get("/ruby", (req, res) => {
 });
 
 app.get("/swift", (req, res) => {
+  req.session.source = 'swift'
+
   res.render("swift", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -324,6 +346,8 @@ app.get("/swift", (req, res) => {
 });
 
 app.get("/ts", (req, res) => {
+  req.session.source = 'ts'
+
   res.render("ts", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
@@ -352,57 +376,46 @@ app.get("/upload", (req, res) => {
 });
 
 app.post("/upload", async (req, res) => {
-  const {judul, konten} = req.body
+  const { judul, konten } = req.body;
 
-  let source
-
-  if (req.originalUrl === "/dart") {
-    source = "dart"; // Nilai "source" untuk halaman A
-  } else if (req.originalUrl === "/java") {
-    source = "java"; // Nilai "source" untuk halaman B
-  } else {
-    source = ""; // Nilai default "source" jika halaman tidak dikenali
-  }
+  let source = req.session.source || ""; // Mendapatkan nilai variabel 'source' dari session
 
   const data = {
     judul,
     konten,
-    source
+    source: source,
   };
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     // return res.status(400).json({ errors: errors.array() });
     res.render("upload", {
       layout: "layouts/main-layouts",
-    side: "layouts/side-bar",
-    img: "/logo/ruby.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-    errors: errors.array()
+      side: "layouts/side-bar",
+      img: "/logo/ruby.png",
+      subMenuDasar1: "Flex",
+      subMenuDasar2: "Margin",
+      subMenuDasar3: "lol",
+      subMenuMahir1: "lol",
+      subMenuMahir2: "Grid",
+      subMenuMahir3: "Padding",
+      errors: errors.array(),
     });
   } else {
     await upload.insertMany([data]);
-
-    if(req.originalUrl === "/dart"){
-      res.render("dart", {
-        layout: "layouts/main-layouts",
-        side: "layouts/side-bar",
-        img: "/logo/dart.png",
-        subMenuDasar1: "Flex",
-        subMenuDasar2: "Margin",
-        subMenuDasar3: "lol",
-        subMenuMahir1: "lol",
-        subMenuMahir2: "Grid",
-        subMenuMahir3: "Padding",
-      });
-    }
+    res.render("dart", {
+      layout: "layouts/main-layouts",
+      side: "layouts/side-bar",
+      img: "/logo/dart.png",
+      subMenuDasar1: "Flex",
+      subMenuDasar2: "Margin",
+      subMenuDasar3: "lol",
+      subMenuMahir1: "lol",
+      subMenuMahir2: "Grid",
+      subMenuMahir3: "Padding",
+    });
   }
-  
-})
+});
+
 
 app.use("/", (req, res) => {
   res.status(404);

@@ -38,7 +38,6 @@ const artikel = new mongoose.Schema({
     },
     source:{
         type: String,
-        required: true,
     }
 })
 
