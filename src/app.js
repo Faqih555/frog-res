@@ -169,211 +169,184 @@ app.post(
   }
 );
 
-app.get("/dart", (req, res) => {
+app.get("/dart", async (req, res) => {
   req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
 
+  let source = req.session.source
+
+  const artikel = await upload.findOne({source})
   res.render("dart", {
+    artikel,
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/dart.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    source,
+  })
+})
 
-app.get("/cplusplus", (req, res) => {
+app.get("/cplusplus", async (req, res) => {
   req.session.source = 'cplusplus'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("cplusplus", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/cplusplus.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/csharp", (req, res) => {
+app.get("/csharp", async(req, res) => {
   req.session.source = 'csharp'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("csharp", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/csharp.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/java", (req, res) => {
+app.get("/java", async(req, res) => {
   req.session.source = 'java'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("java", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/java.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/js", (req, res) => {
+app.get("/js", async(req, res) => {
   req.session.source = 'js'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("js", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/javascript.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/perl", (req, res) => {
+app.get("/perl", async(req, res) => {
   req.session.source = 'perl'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("perl", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/perl.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/php", (req, res) => {
+app.get("/php", async(req, res) => {
   req.session.source = 'php'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("php", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/php.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/python", (req, res) => {
+app.get("/python", async(req, res) => {
   req.session.source = 'python'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("python", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/python.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/r", (req, res) => {
+app.get("/r", async(req, res) => {
   req.session.source = 'r'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("r", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/r.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/ruby", (req, res) => {
+app.get("/ruby", async(req, res) => {
   req.session.source = 'ruby'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("ruby", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/ruby.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    artikel,
+    source,
+  })
+})
 
-app.get("/swift", (req, res) => {
+app.get("/swift", async(req, res) => {
   req.session.source = 'swift'
+
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
 
   res.render("swift", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/swift.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    source,
+    artikel,
+  })
+})
 
-app.get("/ts", (req, res) => {
+app.get("/ts", async (req, res) => {
   req.session.source = 'ts'
 
+  let source = req.session.source
+  const artikel = await upload.findOne({source})
   res.render("ts", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/typescript.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    source,
+    artikel,
+  })
+})
 
-app.get("/upload", (req, res) => {
+app.get("/upload", async (req, res) => {
+  let source = req.session.source
+
+  const artikel = await upload.findOne({source})
   res.render("upload", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
-    img: "/logo/ruby.png",
-    subMenuDasar1: "Flex",
-    subMenuDasar2: "Margin",
-    subMenuDasar3: "lol",
-    subMenuMahir1: "lol",
-    subMenuMahir2: "Grid",
-    subMenuMahir3: "Padding",
-  });
-});
+    source,
+    artikel,
+  })
+})
 
 app.post("/upload", async (req, res) => {
   const { judul, konten } = req.body;
@@ -388,30 +361,22 @@ app.post("/upload", async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     // return res.status(400).json({ errors: errors.array() });
+    const artikel = upload.findOne({source})
     res.render("upload", {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
-      img: "/logo/ruby.png",
-      subMenuDasar1: "Flex",
-      subMenuDasar2: "Margin",
-      subMenuDasar3: "lol",
-      subMenuMahir1: "lol",
-      subMenuMahir2: "Grid",
-      subMenuMahir3: "Padding",
+      artikel,
       errors: errors.array(),
     });
   } else {
     await upload.insertMany([data]);
-    res.render("dart", {
+
+    const artikel = await upload.findOne({source})
+    res.render(source, {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
-      img: "/logo/dart.png",
-      subMenuDasar1: "Flex",
-      subMenuDasar2: "Margin",
-      subMenuDasar3: "lol",
-      subMenuMahir1: "lol",
-      subMenuMahir2: "Grid",
-      subMenuMahir3: "Padding",
+      source,
+      artikel,
     });
   }
 });
