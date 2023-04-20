@@ -1,14 +1,67 @@
-<%- include('./layouts/nav') %>
-
-
-<div class="mt-[70px]">
-    <div
-      class="w-[998px] fixed h-screen top-16 left-[242px] bg-[#151414] overflow-y-auto float-right rounded-sm"
-    >
-      <h1 class="text-6xl py-3 px-5 pb-5 text-center text-[#dd3232]"><%= artikel.judul %></h1>
-      <p class="px-40 pl-10 pr-10 pb-24 flex text-justify"><%= artikel.konten %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        module.exports = {
+  theme: {
+    extend: {
+      rotate: {
+        '360': '360deg', 
+      },
+    },
+    fontFamily: {
+      'inter': ['Inter', 'sans-serif'],
+    },
+  },
+  // ...
+}
+    </script>
+</head>
+<body class="bg-[#343131] font-[inter] font-normal">
+    <header>
+        <nav class="navigation flex fixed top-0 left-0 right-0 z-50 w-[100%] bg-[#1e1e1e] ">
+          <div>
+            <img src="/logo/LOGO-forg-res.png" alt="" class="logo-frog-res w-[80%] h-auto mr-auto mt-[10px] ml-[10px] mb-[2px] cursor-pointer" />
+          </div>
+          <ul>
+            <li class="beranda absolute bottom-[20px] left-[176px] text-[#d9d9d9] hover:from-[#87c32f] hover:to-[#1aa24a] hover:bg-gradient-to-r hover:bg-clip-text hover:text-transparent">
+              <a href="/" class="link">BERANDA</a>
+            </li>
+            <li class="buku absolute bottom-[20px] right-auto left-[305px] text-[#d9d9d9] hover:from-[#87c32f] hover:to-[#1aa24a] hover:bg-gradient-to-r hover:bg-clip-text hover:text-transparent">
+              <a href="/ebook" class="link">BUKU</a>
+            </li>
+          </ul>
+          <div class="input-grup w-[600px] flex items-center relative ml-auto -mr-[110px]">
+            <input type="text" name="name" class="input w-[80%] outline-0 rounded-[4px] p-[8px] pl-[40px] text-base" autocomplete="off" />
+            <div class="flex justify-center items-center absolute left-0 top-[13px] w-[40px] ">
+              <i class="icon-search" aria-hidden="true"
+                ><img src="/icon/search.png" alt=""
+              /></i>
+            </div>
+          </div>
+          <div class="profile-grup flex justify-center items-center">
+            <a href="/login" class="profile rounded-full w-[52px] h-[52px] mr-[10px] cursor-pointer z-50 ">
+              <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
+            </a>
+          </div>
+        </nav>
+      </header>
+      <!-- navbar done -->
+      
+    <div class="mt-[70px]">
+        <div
+          class="w-[998px] fixed h-screen top-16 left-[242px] bg-[#151414] overflow-y-auto float-right rounded-sm"
+        >
+          <h1 class="text-6xl py-3 px-5 pb-5 text-center text-[#dd3232]"><%= artikel.judul %></h1>
+          <p class="px-40 pl-10 pr-10 pb-24 flex text-justify text-[#d9d9d9] break-all"><%= artikel.konten %></p>
+        </div>
+      
     </div>
-  
     <%- include('./layouts/side-bar') %>
-  </div>
-  
+      
+</body>
+</html>

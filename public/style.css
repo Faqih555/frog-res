@@ -97,7 +97,7 @@ nav ul li{
 .icon{
     position: absolute;
     left: 0;
-    top: 2px;
+    top: 2px !important;
     width: 40px;
     display: flex;
     justify-content: center;

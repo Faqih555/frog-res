@@ -6,7 +6,6 @@ const {collection, upload} = require("./mongodb");
 const bcryptjs = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
 const session = require("express-session");
-
 const app = express();
 const port = 3000;
 
@@ -381,11 +380,11 @@ app.post("/upload", async (req, res) => {
 });
 
 app.get('/:source/:judul', async (req, res) => {
-  const source = req.params.source || req.session.source; // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
+  const source = req.params.source || req.session.source // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
   const artikel = await upload.findOne({source})
   res.render('konten', {
-    layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    layout: "layouts/main-layouts",
     source,
     artikel,
   })
