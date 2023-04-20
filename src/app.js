@@ -408,7 +408,8 @@ app.post("/upload", async (req, res) => {
 
 app.get('/:source/:judul', async (req, res) => {
   const source = req.params.source || req.session.source // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
-  const artikel = await upload.findOne({source})
+  const {judul} = req.params
+  const artikel = await upload.findOne({judul})
   const artikels = await upload.find({source}).lean()
   res.render('konten', {
     side: "layouts/side-bar",
