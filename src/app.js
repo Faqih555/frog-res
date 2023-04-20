@@ -172,9 +172,11 @@ app.get("/dart", async (req, res) => {
   req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
   let source = req.session.source
 
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("dart", {
     artikel,
+    artikels,
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
@@ -185,12 +187,14 @@ app.get("/cplusplus", async (req, res) => {
   req.session.source = 'cplusplus'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("cplusplus", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -199,12 +203,14 @@ app.get("/csharp", async(req, res) => {
   req.session.source = 'csharp'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("csharp", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -213,12 +219,14 @@ app.get("/java", async(req, res) => {
   req.session.source = 'java'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("java", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels, 
     source,
   })
 })
@@ -227,12 +235,14 @@ app.get("/js", async(req, res) => {
   req.session.source = 'js'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("js", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -241,12 +251,14 @@ app.get("/perl", async(req, res) => {
   req.session.source = 'perl'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("perl", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -255,12 +267,14 @@ app.get("/php", async(req, res) => {
   req.session.source = 'php'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("php", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -269,12 +283,14 @@ app.get("/python", async(req, res) => {
   req.session.source = 'python'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("python", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -283,12 +299,14 @@ app.get("/r", async(req, res) => {
   req.session.source = 'r'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("r", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -297,12 +315,14 @@ app.get("/ruby", async(req, res) => {
   req.session.source = 'ruby'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
   res.render("ruby", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
+    artikels,
     source,
   })
 })
@@ -312,12 +332,13 @@ app.get("/swift", async(req, res) => {
 
   let source = req.session.source
   const artikel = await upload.findOne({source})
-
+  const artikels = await upload.find({source}).lean()
   res.render("swift", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
     artikel,
+    artikels,
   })
 })
 
@@ -325,24 +346,27 @@ app.get("/ts", async (req, res) => {
   req.session.source = 'ts'
 
   let source = req.session.source
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("ts", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
     artikel,
+    artikels
   })
 })
 
 app.get("/upload", async (req, res) => {
   let source = req.session.source
-
+  const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("upload", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
     artikel,
+    artikels,
   })
 })
 
@@ -359,22 +383,25 @@ app.post("/upload", async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     // return res.status(400).json({ errors: errors.array() });
-    const artikel = upload.findOne({source})
+    const artikel = await upload.findOne({source})
+    const artikels = await upload.find({source})
     res.render("upload", {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
       artikel,
+      artikels,
       errors: errors.array(),
     });
   } else {
     await upload.insertMany([data]);
-
+    const artikels = await upload.find({source}).lean()
     const artikel = await upload.findOne({source})
     res.render(source, {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
       source,
       artikel,
+      artikels,
     });
   }
 });
@@ -382,11 +409,13 @@ app.post("/upload", async (req, res) => {
 app.get('/:source/:judul', async (req, res) => {
   const source = req.params.source || req.session.source // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
   const artikel = await upload.findOne({source})
+  const artikels = await upload.find({source}).lean()
   res.render('konten', {
     side: "layouts/side-bar",
     layout: "layouts/main-layouts",
     source,
     artikel,
+    artikels,
   })
 });
 
