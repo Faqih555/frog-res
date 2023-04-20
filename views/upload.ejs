@@ -2,13 +2,20 @@
     <%- include('./layouts/side-bar') %>
     </div>
 
-<form action="/upload" method="post" class="mt-40 absolute right-[70%]">
+
+    <div class="bg-[#232323] w-[1500px] h-screen">
+  
+
+   
+
+<form action="/upload" method="post" class="mt-32 absolute">
     <div class="relative">
+        <h1 class="mt-7 text-white ml-[274px] text-xl">Judul</h1>
         <input
           type="text"
-          class="block absolute left-[245px] top-28 w-[250px] h-[30px]  rounded-sm text-center"
+          class="block absolute left-[275px] w-[250px] h-[30px] rounded-sm pl-1 bg-white-300 border-blue-100"
           name="judul"
-          placeholder="Judul"
+          placeholder="Ketik judul disini"
           autocomplete="off"
           style="
             font-family: 'Open Sans', sans-serif;
@@ -17,25 +24,27 @@
           "
         />
     <div class="relative">
-        <input
+      <h1 class="mt-16 text-white ml-[274px] text-xl">Konten</h1>
+        <textarea
           type="text"
-          class="block absolute left-[245px] top-40 w-[250px] h-[30px] rounded-sm text-center"
+          class="block absolute left-[275px] top-8 w-[1040px] h-[250px] rounded-sm pl-1"
           name="konten"
-          placeholder="konten"
+          placeholder=""
           autocomplete="off"
           style="
             font-family: 'Open Sans', sans-serif;
             font-size: 14px;
             outline: none;
           "
-        />
+        ></textarea>
         <div class="mt-2">
             <input
               type="submit"
               value="upload"
-              class="absolute top-[248px] px-2 ml-[340px] hover:bg-violet-500 bg-[#cbcbcb] rounded-sm"
+              class="absolute top-[290px] px-2 ml-[1250px] hover:bg-blue-400 bg-[#cbcbcb] rounded-sm"
             />
           </div>
 </form>
+</div>
 
 
