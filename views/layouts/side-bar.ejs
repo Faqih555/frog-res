@@ -26,13 +26,13 @@
           + 
         </h1>
       </a>
-<% artikels.forEach((artikel, i) => { i++ %>
+<% artikels.forEach((konten, i) => { i++ %>
   <% if (artikel !== null) { %>
-    <a href="/<%= source %>/<%= artikel.judul %>">
+    <a href="/<%= source %>/<%= konten.judul %>">
       <h1
         class="cursor-pointer text-lg py-1 hover:bg-[#154966] rounded-md mt-1 bg-[#201D1D] text-left pl-2 text-[#d9d9d9]" 
       >
-        <%= i++ %>. <%= artikel.judul %>
+        <%= i++ %>. <%= konten.judul %>
       </h1>
     </a>
 <% } %>
