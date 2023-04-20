@@ -12,10 +12,10 @@ const port = 3000;
 
 // middleware
 app.use(express.json());
-app.set("view engine", "ejs");
 app.use(expressLayouts);
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
     secret: "secret-key", // Kunci rahasia untuk menyimpan session
@@ -383,7 +383,7 @@ app.post("/upload", async (req, res) => {
 app.get('/:source/:judul', async (req, res) => {
   const source = req.params.source || req.session.source; // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
   const artikel = await upload.findOne({source})
-  res.render('artikel', {
+  res.render('konten', {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,

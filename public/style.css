@@ -211,15 +211,9 @@ a{
 /* aside start */
 aside{
     width: 28%;
-    /* height: 200vh; */
-    /* background-color: #1aa24a; */
     margin-right: 5px;
     margin-top: 75px;
     float: right;
-}
-
-.aside-content{
-    /* height: 200vh; */
 }
 /* aside done */
 
