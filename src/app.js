@@ -171,7 +171,6 @@ app.post(
 
 app.get("/dart", async (req, res) => {
   req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
-
   let source = req.session.source
 
   const artikel = await upload.findOne({source})
@@ -381,6 +380,16 @@ app.post("/upload", async (req, res) => {
   }
 });
 
+app.get('/:source/:judul', async (req, res) => {
+  const source = req.params.source || req.session.source; // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
+  const artikel = await upload.findOne({source})
+  res.render('artikel', {
+    layout: "layouts/main-layouts",
+    side: "layouts/side-bar",
+    source,
+    artikel,
+  })
+});
 
 app.use("/", (req, res) => {
   res.status(404);
