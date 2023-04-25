@@ -41,10 +41,21 @@ const artikel = new mongoose.Schema({
     }
 })
 
+const dataBahasa = new mongoose.Schema({
+    nama:{
+        type: String,
+        required: true,
+    },
+})
+
+
+const bahasa = new mongoose.model("bahasa", dataBahasa)
+
+
 const upload = new mongoose.model("artikel", artikel)
 
 const collection = new mongoose.model("user", LogIn)
 
 
 
-module.exports = {collection, upload}
+module.exports = {collection, upload, bahasa}

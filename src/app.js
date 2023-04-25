@@ -2,14 +2,14 @@ require('dotenv').config()
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const { body, validationResult, check } = require("express-validator")
-const {collection, upload} = require("./mongodb")
+const {collection, upload, bahasa} = require("./mongodb")
 const bcryptjs = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
 const session = require("express-session")
 const app = express()
 const port = 3000
 
-// middleware
+
 app.use(express.json())
 app.use(expressLayouts)
 app.use(express.static("public"))
@@ -23,9 +23,13 @@ app.use(
   })
 )
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const query = req.query.q;
+  const search = await bahasa.find({})
   res.render("index", {
     layout: "layouts/main-layouts",
+    search,
+    searched: false,
   })
 })
 
@@ -230,14 +234,14 @@ app.get("/java", async(req, res) => {
   })
 })
 
-app.get("/js", async(req, res) => {
-  req.session.source = 'js'
+app.get("/javascript", async(req, res) => {
+  req.session.source = 'javascript'
 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
 
-  res.render("js", {
+  res.render("javascript", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     artikel,
@@ -341,13 +345,13 @@ app.get("/swift", async(req, res) => {
   })
 })
 
-app.get("/ts", async (req, res) => {
-  req.session.source = 'ts'
+app.get("/typescript", async (req, res) => {
+  req.session.source = 'typescript'
 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
-  res.render("ts", {
+  res.render("typescript", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
@@ -416,6 +420,18 @@ app.get('/:source/:judul', async (req, res) => {
     source,
     artikel,
     artikels,
+  })
+})
+
+app.get('/search', async (req, res) => {
+  const query = req.query.q; // Mendapatkan query pencarian dari parameter "q" di URL
+  const search = await bahasa.find({ nama: new RegExp(query, 'i') })
+
+  res.render('index', {
+    layout: "layouts/main-layouts",
+    query,
+    search,
+    searched: true,
   })
 })
 

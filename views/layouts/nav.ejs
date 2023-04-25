@@ -1,5 +1,6 @@
 <!-- navbar start -->
 <header>
+  <form action="/search" method="get">
   <nav class="navigation">
     <div>
       <img src="/logo/LOGO-forg-res.png" alt="" class="logo-frog-res" />
@@ -13,12 +14,14 @@
       </li>
     </ul>
     <div class="input-grup">
-      <input type="text" name="name" class="input" autocomplete="off" />
-      <div class="icon">
-        <i class="icon-search" aria-hidden="true"
-          ><img src="/icon/search.png" alt=""
-        /></i>
-      </div>
+      <input type="text" name="q" class="input" autocomplete="off" />
+      <button type="submit" class="" onclick="console.log('button di tekan')">
+        <div class="icon">
+          <i class="icon-search" aria-hidden="true"
+            ><img src="/icon/search.png" alt=""
+          /></i>
+        </div>
+      </button>
     </div>
     <div class="profile-grup">
       <a href="login" class="profile rounded-full">
@@ -26,5 +29,6 @@
       </a>
     </div>
   </nav>
+</form>
 </header>
 <!-- navbar done -->
