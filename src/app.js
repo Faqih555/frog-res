@@ -358,8 +358,8 @@ app.get("/swift", async(req, res) => {
   req.session.source = 'swift'
 
   let source = req.session.source
-  const artikel = await upload.findOne({source})
   const artikels = await upload.find({source}).lean()
+  const artikel = await upload.findOne({source})
   res.render("swift", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
