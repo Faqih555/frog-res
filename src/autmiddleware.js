@@ -2,9 +2,7 @@ exports.requireLogin = (req, res, next)=>{
     if(req.session.userId){
         return next()
     } else {
-        res.render("login", {
-            layout: "layouts/main-layouts",
-          })
+        res.redirect("login")
     }
 }
 
