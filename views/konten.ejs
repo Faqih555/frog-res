@@ -21,7 +21,7 @@
 }
     </script>
 </head>
-<body class="bg-[#343131] font-[inter] font-normal">
+<body class="bg-[#343131] font-inter font-normal">
     <header>
         <nav class="navigation flex fixed top-0 left-0 right-0 z-50 w-[100%] bg-[#1e1e1e] ">
           <div>
@@ -43,10 +43,18 @@
               /></i>
             </div>
           </div>
-          <div class="profile-grup flex justify-center items-center">
-            <a href="/login" class="profile rounded-full w-[52px] h-[52px] mr-[10px] cursor-pointer z-50 ">
-              <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
-            </a>
+          <div class="profile-grup flex justify-center items-center mr-3 ">
+            <% if (isLoggedIn) { %>
+              <a href="/logout" class="profile rounded-full">
+                <div class="w-[50px] h-[50px] rounded-full bg-[#1aa24a] flex justify-center items-center ">
+                  <p class="text-3xl text-[#d9d9d9] mb-1"><%= firstChar %></p>
+                </div>
+              </a>
+            <% } else { %>
+              <a href="/login" class="profile rounded-full">
+                <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
+              </a>
+              <% } %>
           </div>
         </nav>
       </header>

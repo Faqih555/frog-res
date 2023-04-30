@@ -4,6 +4,7 @@ const expressLayouts = require("express-ejs-layouts")
 const { body, validationResult, check } = require("express-validator")
 const {collection, upload, bahasa} = require("./mongodb")
 const {requireLogin, checkAuth} = require("./autmiddleware")
+const {addFirstCharToLocals} = require("./firstchar")
 const bcryptjs = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
 const session = require("express-session")
@@ -27,7 +28,7 @@ app.use((req, res, next) => {
   res.locals.isLoggedIn = req.session.userId != null;
   next();
 });
-
+app.use(addFirstCharToLocals)
 
 
 app.get("/", async (req, res) => {
@@ -372,7 +373,6 @@ app.get("/swift", async(req, res) => {
 
 app.get("/typescript", async (req, res) => {
   req.session.source = 'typescript'
-
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -382,7 +382,7 @@ app.get("/typescript", async (req, res) => {
     background: "bg-[#343131]",
     source,
     artikel,
-    artikels
+    artikels,
   })
 })
 
