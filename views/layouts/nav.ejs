@@ -24,9 +24,16 @@
       </button>
     </div>
     <div class="profile-grup">
-      <a href="login" class="profile rounded-full">
-        <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
-      </a>
+      <% if (isLoggedIn) { %>
+        <a href="/logout" class="profile rounded-full">
+          <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
+        </a>
+      <% } else { %>
+        <a href="/login" class="profile rounded-full">
+          <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
+        </a>
+        <% } %>
+      
     </div>
   </nav>
 </form>

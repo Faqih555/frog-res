@@ -3,6 +3,7 @@ const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const { body, validationResult, check } = require("express-validator")
 const {collection, upload, bahasa} = require("./mongodb")
+const {requireLogin, checkAuth} = require("./autmiddleware")
 const bcryptjs = require('bcryptjs')
 const jsonwebtoken = require('jsonwebtoken')
 const session = require("express-session")
@@ -22,6 +23,12 @@ app.use(
     saveUninitialized: false,
   })
 )
+app.use((req, res, next) => {
+  res.locals.isLoggedIn = req.session.userId != null;
+  next();
+});
+
+
 
 app.get("/", async (req, res) => {
   const query = req.query.q;
@@ -29,6 +36,7 @@ app.get("/", async (req, res) => {
   res.render("index", {
     layout: "layouts/main-layouts",
     search,
+    background: "bg-[#343131]",
     searched: false,
   })
 })
@@ -36,18 +44,23 @@ app.get("/", async (req, res) => {
 app.get("/ebook", (req, res) => {
   res.render("ebook", {
     layout: "layouts/main-layouts",
+    background: "bg-[#4d4444]",
   })
 })
 
-app.get("/login", (req, res) => {
+app.get("/login",  (req, res) => {
   res.render("login", {
-    layout: "layouts/main-layouts",
+      searched: false,
+      isLoggedIn: req.session.userId != null,
+      layout: "layouts/main-layouts",
+      background: "bg-[#343131]",
   })
 })
 
 app.get("/register", (req, res) => {
   res.render("register", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
   })
 })
 
@@ -101,14 +114,13 @@ app.post(
     if (!errors.isEmpty()) {
       res.render("register", {
         layout: "layouts/main-layouts",
+        background: "bg-[#343131]",
         errors: errors.array(),
       })
     } else {
       await collection.insertMany([data])
 
-      res.render("login", {
-        layout: "layouts/main-layouts",
-      })
+      res.redirect("login")
     }
   }
 )
@@ -147,17 +159,18 @@ app.post(
     const {name, password} = req.body
 
     const datauser = await collection.findOne({$or: [{name: name}, {email: name}]})
+    
     if(datauser){
       const passwordUser = await bcryptjs.compare(password, datauser.password)
+      req.session.userId = datauser.id
       if(passwordUser){
         const data ={
           id: datauser._id
         }
+        req.session.name = datauser.name
+        req.session.email = datauser.email
         const token = await jsonwebtoken.sign(data, process.env.JWS_SECRET)
-        return res.render("index", {
-          layout: "layouts/main-layouts",
-          token: token
-        })
+        return res.redirect("/")
       }
     }
     const errors = validationResult(req)
@@ -165,11 +178,12 @@ app.post(
       // return res.status(400).json({ errors: errors.array() });
       res.render("login", {
         layout: "layouts/main-layouts",
+        background: "bg-[#343131]",
         errors: errors.array(),
-      });
+      })
     } 
   }
-);
+)
 
 app.get("/dart", async (req, res) => {
   req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
@@ -180,6 +194,7 @@ app.get("/dart", async (req, res) => {
   res.render("dart", {
     artikel,
     artikels,
+    background: "bg-[#343131]",
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     source,
@@ -195,6 +210,7 @@ app.get("/cplusplus", async (req, res) => {
 
   res.render("cplusplus", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -202,7 +218,7 @@ app.get("/cplusplus", async (req, res) => {
   })
 })
 
-app.get("/csharp", async(req, res) => {
+app.get("/csharp", checkAuth, async(req, res) => {
   req.session.source = 'csharp'
 
   let source = req.session.source
@@ -211,6 +227,7 @@ app.get("/csharp", async(req, res) => {
 
   res.render("csharp", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -227,6 +244,7 @@ app.get("/java", async(req, res) => {
 
   res.render("java", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels, 
@@ -243,6 +261,7 @@ app.get("/javascript", async(req, res) => {
 
   res.render("javascript", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -259,6 +278,7 @@ app.get("/perl", async(req, res) => {
 
   res.render("perl", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -275,6 +295,7 @@ app.get("/php", async(req, res) => {
 
   res.render("php", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -291,6 +312,7 @@ app.get("/python", async(req, res) => {
 
   res.render("python", {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
     artikels,
@@ -308,6 +330,7 @@ app.get("/r", async(req, res) => {
   res.render("r", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    background: "bg-[#343131]",
     artikel,
     artikels,
     source,
@@ -324,6 +347,7 @@ app.get("/ruby", async(req, res) => {
   res.render("ruby", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    background: "bg-[#343131]",
     artikel,
     artikels,
     source,
@@ -339,6 +363,7 @@ app.get("/swift", async(req, res) => {
   res.render("swift", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    background: "bg-[#343131]",
     source,
     artikel,
     artikels,
@@ -354,26 +379,28 @@ app.get("/typescript", async (req, res) => {
   res.render("typescript", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    background: "bg-[#343131]",
     source,
     artikel,
     artikels
   })
 })
 
-app.get("/upload", async (req, res) => {
+app.get("/upload", checkAuth, requireLogin, async (req, res) => {
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("upload", {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
+    background: "bg-[#343131]",
     source,
     artikel,
     artikels,
   })
 })
 
-app.post("/upload", async (req, res) => {
+app.post("/upload", checkAuth, requireLogin, async (req, res) => {
   const { judul, konten } = req.body;
 
   let source = req.session.source || ""; // Mendapatkan nilai variabel 'source' dari session
@@ -391,6 +418,7 @@ app.post("/upload", async (req, res) => {
     res.render("upload", {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
+      background: "bg-[#343131]",
       artikel,
       artikels,
       errors: errors.array(),
@@ -402,6 +430,7 @@ app.post("/upload", async (req, res) => {
     res.render(source, {
       layout: "layouts/main-layouts",
       side: "layouts/side-bar",
+      background: "bg-[#343131]",
       source,
       artikel,
       artikels,
@@ -417,6 +446,7 @@ app.get('/:source/:judul', async (req, res) => {
   res.render('konten', {
     side: "layouts/side-bar",
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     source,
     artikel,
     artikels,
@@ -429,10 +459,26 @@ app.get('/search', async (req, res) => {
 
   res.render('index', {
     layout: "layouts/main-layouts",
+    background: "bg-[#343131]",
     query,
     search,
     searched: true,
   })
+})
+
+app.get('/logout', (req, res) => {
+  const { name, email } = req.session;
+  res.render('logout', {
+    layout: "layouts/main-layouts",
+    background: "bg-black",
+    name,
+    email,
+  })
+})
+
+app.post("/logout", checkAuth, (req, res) => {
+  req.session.destroy()
+  res.redirect('/')
 })
 
 app.use("/", (req, res) => {
