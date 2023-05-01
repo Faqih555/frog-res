@@ -23,6 +23,7 @@
 </head>
 <body class="bg-[#343131] font-inter font-normal">
     <header>
+      <form  action="/search" method="get">
         <nav class="navigation flex fixed top-0 left-0 right-0 z-50 w-[100%] bg-[#1e1e1e] ">
           <div>
             <img src="/logo/LOGO-forg-res.png" alt="" class="logo-frog-res w-[80%] h-auto mr-auto mt-[10px] ml-[10px] mb-[2px] cursor-pointer" />
@@ -36,11 +37,13 @@
             </li>
           </ul>
           <div class="input-grup w-[600px] flex items-center relative ml-auto -mr-[110px]">
-            <input type="text" name="name" class="input w-[80%] outline-0 rounded-[4px] p-[8px] pl-[40px] text-base" autocomplete="off" />
+            <input type="text" name="q" class="input w-[80%] outline-0 rounded-[4px] p-[8px] pl-[40px] text-base" autocomplete="off" />
             <div class="flex justify-center items-center absolute left-0 top-[13px] w-[40px] ">
+              <button type="submit" class="" onclick="console.log('button di tekan')">
               <i class="icon-search" aria-hidden="true"
                 ><img src="/icon/search.png" alt=""
               /></i>
+            </button>
             </div>
           </div>
           <div class="profile-grup flex justify-center items-center mr-3 ">
@@ -57,6 +60,7 @@
               <% } %>
           </div>
         </nav>
+      </form>
       </header>
       <!-- navbar done -->
       
