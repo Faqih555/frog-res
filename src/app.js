@@ -427,14 +427,7 @@ app.post("/upload", checkAuth, requireLogin, async (req, res) => {
     await upload.insertMany([data])
     const artikels = await upload.find({source}).lean()
     const artikel = await upload.findOne({source})
-    res.render(source, {
-      layout: "layouts/main-layouts",
-      side: "layouts/side-bar",
-      background: "bg-[#343131]",
-      source,
-      artikel,
-      artikels,
-    })
+    res.redirect(source)
   }
 })
 
