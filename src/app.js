@@ -45,7 +45,7 @@ app.get("/", async (req, res) => {
 app.get("/ebook", (req, res) => {
   res.render("ebook", {
     layout: "layouts/main-layouts",
-    background: "bg-[#4d4444]",
+    background: "bg-[#584E4E]",
   })
 })
 
