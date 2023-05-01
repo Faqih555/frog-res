@@ -59,3 +59,4 @@ const collection = new mongoose.model("user", LogIn)
 
 
 module.exports = {collection, upload, bahasa}
+
