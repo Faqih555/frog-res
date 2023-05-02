@@ -32,11 +32,15 @@ app.use(addFirstCharToLocals)
 
 
 app.get("/", async (req, res) => {
-  const query = req.query.q;
+  const source = req.session.source
   const search = await bahasa.find({})
+  const artikels = await upload.find().sort({ tanggal: -1 }).limit(5).exec();
+
   res.render("index", {
     layout: "layouts/main-layouts",
     search,
+    source,
+    artikels,
     background: "bg-[#343131]",
     searched: false,
   })
@@ -388,6 +392,7 @@ app.get("/typescript", async (req, res) => {
 
 app.get("/upload", checkAuth, requireLogin, async (req, res) => {
   let source = req.session.source
+  let penulis = req.session.name
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("upload", {
@@ -395,6 +400,7 @@ app.get("/upload", checkAuth, requireLogin, async (req, res) => {
     side: "layouts/side-bar",
     background: "bg-[#343131]",
     source,
+    penulis,
     artikel,
     artikels,
   })
@@ -403,12 +409,14 @@ app.get("/upload", checkAuth, requireLogin, async (req, res) => {
 app.post("/upload", checkAuth, requireLogin, async (req, res) => {
   const { judul, konten } = req.body;
 
-  let source = req.session.source || ""; // Mendapatkan nilai variabel 'source' dari session
+  let source = req.session.source || "" // Mendapatkan nilai variabel 'source' dari session
+  let penulis = req.session.name || ""
 
   const data = {
     judul,
     konten,
-    source: source,
+    source,
+    penulis
   };
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -449,10 +457,14 @@ app.get('/:source/:judul', async (req, res) => {
 app.get('/search', async (req, res) => {
   const query = req.query.q; // Mendapatkan query pencarian dari parameter "q" di URL
   const search = await bahasa.find({ nama: new RegExp(query, 'i') })
+  const artikels = await upload.find().sort({ createdAt: 'desc' }).limit(5).exec();
+  const source = req.session.source
 
   res.render('index', {
     layout: "layouts/main-layouts",
     background: "bg-[#343131]",
+    artikels,
+    source,
     query,
     search,
     searched: true,

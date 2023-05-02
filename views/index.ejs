@@ -211,75 +211,19 @@
 
 <aside class="h-[165vh] relative">
   <div class="aside-content relative">
-    <a href="/js">
-      <div class="text-blue-100 mb-5 cursor-pointer">
-        <h1 class="font-bold text-1xl">Contoh Judul</h1>
-        <p class="font-light text-xs">
-          penulis, <span class="italic">Gantinama</span>
-        </p>
-        <p class="text truncate line-clamp-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi
-          tempore asperiores sapiente tenetur, nulla officia ratione vero?
-          Veniam, necessitatibus!
-        </p>
-      </div>
-    </a>
-
-    <a href="/python">
-      <div class="text-blue-100 mb-5 cursor-pointer">
-        <h1 class="font-bold text-1xl">Contoh Judul</h1>
-        <p class="font-light text-xs">
-          penulis, <span class="italic">Gantinama</span>
-        </p>
-        <p class="text truncate line-clamp-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi
-          tempore asperiores sapiente tenetur, nulla officia ratione vero?
-          Veniam, necessitatibus!
-        </p>
-      </div>
-    </a>
-
-    <a href="php">
-      <div class="text-blue-100 mb-5 cursor-pointer">
-        <h1 class="font-bold text-1xl">Contoh Judul</h1>
-        <p class="font-light text-xs">
-          penulis, <span class="italic">Gantinama</span>
-        </p>
-        <p class="text truncate line-clamp-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi
-          tempore asperiores sapiente tenetur, nulla officia ratione vero?
-          Veniam, necessitatibus!
-        </p>
-      </div>
-    </a>
-
-    <a href="/ruby">
-      <div class="text-blue-100 mb-5 cursor-pointer">
-        <h1 class="font-bold text-1xl">Contoh Judul</h1>
-        <p class="font-light text-xs">
-          penulis, <span class="italic">Gantinama</span>
-        </p>
-        <p class="text truncate line-clamp-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi
-          tempore asperiores sapiente tenetur, nulla officia ratione vero?
-          Veniam, necessitatibus!
-        </p>
-      </div>
-    </a>
-
-    <a href="/java">
-      <div class="text-blue-100 cursor-pointer">
-        <h1 class="font-bold text-1xl">Contoh Judul</h1>
-        <p class="font-light text-xs">
-          penulis, <span class="italic">Gantinama</span>
-        </p>
-        <p class="text truncate line-clamp-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa sequi
-          tempore asperiores sapiente tenetur, nulla officia ratione vero?
-          Veniam, necessitatibus!
-        </p>
-      </div>
-    </a>
+    <% artikels.forEach(artikel => { %>
+      <a href="/<%= artikel.source %>/<%= artikel.judul %>">
+        <div class="text-blue-100 mb-5 cursor-pointer">
+          <h1 class="font-bold text-1xl"><%= artikel.judul %></h1>
+          <p class="font-light text-xs">
+            penulis, <span class="italic"><%= artikel.penulis %></span>
+          </p>
+          <p class="text truncate line-clamp-1">
+            <%= artikel.konten %>
+          </p>
+        </div>
+      </a>
+    <% }) %>
   </div>
 
   <div

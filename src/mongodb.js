@@ -38,6 +38,9 @@ const artikel = new mongoose.Schema({
     },
     source:{
         type: String,
+    },
+    penulis: {
+        type: String,
     }
 })
 
