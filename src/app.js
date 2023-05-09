@@ -485,8 +485,8 @@ app.get('/:source/:judul', async (req, res) => {
   const artikel = await upload.findOne({judul})
   const artikels = await upload.find({source}).lean()
   res.render('konten', {
-    side: "layouts/side-bar",
     layout: "layouts/main-layouts",
+    side: "layouts/side-bar",
     background: "bg-[#343131]",
     source,
     namaBahasa,
