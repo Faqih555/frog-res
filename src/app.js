@@ -193,11 +193,14 @@ app.post(
 app.get("/dart", async (req, res) => {
   req.session.source = 'dart' // Set nilai session "source" menjadi "dart"
   let source = req.session.source
+  req.session.namaBahasa = 'DART'
 
+  let namaBahasa = req.session.namaBahasa 
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
   res.render("dart", {
     artikel,
+    namaBahasa,
     artikels,
     background: "bg-[#343131]",
     layout: "layouts/main-layouts",
@@ -208,7 +211,9 @@ app.get("/dart", async (req, res) => {
 
 app.get("/cplusplus", async (req, res) => {
   req.session.source = 'cplusplus'
+  req.session.namaBahasa = 'C++'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -218,7 +223,7 @@ app.get("/cplusplus", async (req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
-    nama,
+    namaBahasa,
     artikels,
     source,
   })
@@ -226,7 +231,9 @@ app.get("/cplusplus", async (req, res) => {
 
 app.get("/csharp", checkAuth, async(req, res) => {
   req.session.source = 'csharp'
+  req.session.namaBahasa = 'c#'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -236,6 +243,7 @@ app.get("/csharp", checkAuth, async(req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
+    namaBahasa,
     artikels,
     source,
   })
@@ -243,7 +251,9 @@ app.get("/csharp", checkAuth, async(req, res) => {
 
 app.get("/java", async(req, res) => {
   req.session.source = 'java'
+  req.session.namaBahasa = 'JAVA'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -252,6 +262,7 @@ app.get("/java", async(req, res) => {
     layout: "layouts/main-layouts",
     background: "bg-[#343131]",
     side: "layouts/side-bar",
+    namaBahasa,
     artikel,
     artikels, 
     source,
@@ -260,7 +271,9 @@ app.get("/java", async(req, res) => {
 
 app.get("/javascript", async(req, res) => {
   req.session.source = 'javascript'
+  req.session.namaBahasa = 'JAVASCRIPT'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -270,6 +283,7 @@ app.get("/javascript", async(req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
+    namaBahasa,
     artikels,
     source,
   })
@@ -277,7 +291,9 @@ app.get("/javascript", async(req, res) => {
 
 app.get("/perl", async(req, res) => {
   req.session.source = 'perl'
+  req.session.namaBahasa = 'PERL'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -286,6 +302,7 @@ app.get("/perl", async(req, res) => {
     layout: "layouts/main-layouts",
     background: "bg-[#343131]",
     side: "layouts/side-bar",
+    namaBahasa,
     artikel,
     artikels,
     source,
@@ -294,7 +311,9 @@ app.get("/perl", async(req, res) => {
 
 app.get("/php", async(req, res) => {
   req.session.source = 'php'
+  req.session.namaBahasa = 'PHP'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -304,6 +323,7 @@ app.get("/php", async(req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
+    namaBahasa,
     artikels,
     source,
   })
@@ -311,7 +331,9 @@ app.get("/php", async(req, res) => {
 
 app.get("/python", async(req, res) => {
   req.session.source = 'python'
+  req.session.namaBahasa = 'PYTHON'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -321,6 +343,7 @@ app.get("/python", async(req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
+    namaBahasa,
     artikels,
     source,
   })
@@ -328,7 +351,9 @@ app.get("/python", async(req, res) => {
 
 app.get("/r", async(req, res) => {
   req.session.source = 'r'
+  req.session.namaBahasa = 'R'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -339,13 +364,16 @@ app.get("/r", async(req, res) => {
     background: "bg-[#343131]",
     artikel,
     artikels,
+    namaBahasa,
     source,
   })
 })
 
 app.get("/ruby", async(req, res) => {
   req.session.source = 'ruby'
+  req.session.namaBahasa = 'RUBY'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -355,6 +383,7 @@ app.get("/ruby", async(req, res) => {
     side: "layouts/side-bar",
     background: "bg-[#343131]",
     artikel,
+    namaBahasa,
     artikels,
     source,
   })
@@ -362,7 +391,9 @@ app.get("/ruby", async(req, res) => {
 
 app.get("/swift", async(req, res) => {
   req.session.source = 'swift'
+  req.session.namaBahasa = 'SWIFT'
 
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -371,6 +402,7 @@ app.get("/swift", async(req, res) => {
     side: "layouts/side-bar",
     background: "bg-[#343131]",
     source,
+    namaBahasa,
     artikel,
     artikels,
   })
@@ -378,6 +410,9 @@ app.get("/swift", async(req, res) => {
 
 app.get("/typescript", async (req, res) => {
   req.session.source = 'typescript'
+  req.session.namaBahasa = 'TYPESCRIPT'
+
+  let namaBahasa = req.session.namaBahasa 
   let source = req.session.source
   const artikels = await upload.find({source}).lean()
   const artikel = await upload.findOne({source})
@@ -385,6 +420,7 @@ app.get("/typescript", async (req, res) => {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     background: "bg-[#343131]",
+    namaBahasa,
     source,
     artikel,
     artikels,
@@ -392,6 +428,7 @@ app.get("/typescript", async (req, res) => {
 })
 
 app.get("/upload", checkAuth, requireLogin, async (req, res) => {
+  let namaBahasa = req.session.namaBahasa
   let source = req.session.source
   let penulis = req.session.name
   const artikels = await upload.find({source}).lean()
@@ -400,6 +437,7 @@ app.get("/upload", checkAuth, requireLogin, async (req, res) => {
     layout: "layouts/main-layouts",
     side: "layouts/side-bar",
     background: "bg-[#343131]",
+    namaBahasa,
     source,
     penulis,
     artikel,
@@ -441,6 +479,7 @@ app.post("/upload", checkAuth, requireLogin, async (req, res) => {
 })
 
 app.get('/:source/:judul', async (req, res) => {
+  let namaBahasa = req.session.nama
   const source = req.params.source || req.session.source // mengambil nilai dari parameter path atau dari req.session.source jika tidak ada parameter path
   const {judul} = req.params
   const artikel = await upload.findOne({judul})
@@ -450,6 +489,7 @@ app.get('/:source/:judul', async (req, res) => {
     layout: "layouts/main-layouts",
     background: "bg-[#343131]",
     source,
+    namaBahasa,
     artikel,
     artikels,
   })
