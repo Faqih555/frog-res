@@ -218,6 +218,7 @@ app.get("/cplusplus", async (req, res) => {
     background: "bg-[#343131]",
     side: "layouts/side-bar",
     artikel,
+    nama,
     artikels,
     source,
   })
