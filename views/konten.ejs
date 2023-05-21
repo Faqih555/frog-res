@@ -48,13 +48,13 @@
           </div>
           <div class="profile-grup flex justify-center items-center mr-3 ">
             <% if (isLoggedIn) { %>
-              <a href="/logout" class="profile rounded-full z-50">
+              <a href="/logout" class="profile rounded-full">
                 <div class="w-[50px] h-[50px] rounded-full bg-[#1aa24a] flex justify-center items-center ">
                   <p class="text-3xl text-[#d9d9d9] mb-1"><%= firstChar %></p>
                 </div>
               </a>
             <% } else { %>
-              <a href="/login" class="profile rounded-full w-[52px] h-[52px] z-50">
+              <a href="/login" class="profile rounded-full w-[52px] h-[52px]">
                 <img src="/icon/foto-profile.png" alt="" class="foto-profile" />
               </a>
               <% } %>
