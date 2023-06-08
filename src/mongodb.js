@@ -2,10 +2,10 @@ const mongoose = require('mongoose')
 
 mongoose.connect("mongodb+srv://faqih:gantinama@frog-res.7orxjmh.mongodb.net/frog-res")
 .then(() =>{
-    console.log("mongodb conected")
+    console.log("mongodb terhubung")
 })
 .catch(() =>{
-    console.log("failed to connect")
+    console.log("gagal menghubungkannn")
 })
 
 const LogIn = new mongoose.Schema({

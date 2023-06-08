@@ -490,7 +490,7 @@ app.get('/:source/:judul', async (req, res) => {
     background: "bg-[#343131]",
     source,
     namaBahasa,
-    artikel,
+     artikel,
     artikels,
   })
 })
